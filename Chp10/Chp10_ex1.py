@@ -1,25 +1,26 @@
-import string
-fhand = open('romeo-full.txt')
-counts = dict()
-for line in fhand:
-    line = line.translate(str.maketrans('', '', string.punctuation))
-    line = line.lower()
-    words = line.split()
-    for word in words:
-        if word not in counts:
-            counts[word] = 1
-        else:
-            counts[word] += 1
+from audioop import add
 
-# Sort the dictionary by value
+
+fname = open("mbox-short.txt")
+num_messages = dict()
+
+for line in fname:
+    line = line.rstrip()
+    if not line.startswith('From '): continue
+
+    words = line.split()
+    
+    address = words[1]
+    if address not in num_messages:
+        num_messages[address] = 1
+    else:
+        num_messages[address] += 1
+
 lst = list()
-for key, val in list(counts.items()):
-    lst.append((val, key))
+for key, val in list(num_messages.items()):
+    lst.append((key, val))
 
 lst.sort(reverse=True)
 
-for key, val in lst[:10]:
+for key, val in lst[:]:
     print(key, val)
-
-# Code: http://www.py4e.com/code3/count3.py
-# Or select Download from this trinket's left-hand menu

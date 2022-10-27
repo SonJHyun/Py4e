@@ -28,7 +28,7 @@ while True:
         max = num
 
 print(min, ":", max)
-print(count)
+
         
     
 

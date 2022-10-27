@@ -27,8 +27,7 @@ while True:
     if max < num:
         max = num
 
-print(min)
-print(max)
+print(min, ":", max)
 print(count)
         
     
